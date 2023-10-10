@@ -7,12 +7,13 @@ class Sang():
         print(f"Nå spilles {self.tittel} med {self.artist} ut til terminalen.")
     
     def sjekk_artist(self, navn: str): 
-        if len(navn) <= 1: return False
+        if len(navn) <= 1: 
+            return False
         
         else: 
-            navn = navn.lower().split("")
+            navn = navn.lower().split(" ")
             for i in navn: 
-                if i in self.artist: 
+                if i == self.artist: 
                     return True
             return False
         
@@ -36,4 +37,5 @@ class Sang():
     
     def __str__(self): 
         string = f"{self.tittel} med {self.artist}"
+        return string
     
