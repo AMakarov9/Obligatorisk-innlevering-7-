@@ -12,8 +12,9 @@ class Sang():
         
         else: 
             navn = navn.lower().split(" ")
+            artistnavn = self.artist.lower().split(" ")
             for i in navn: 
-                if i == self.artist: 
+                if i in artistnavn: 
                     return True
             return False
         
@@ -23,9 +24,10 @@ class Sang():
         else: 
             return False
     
-    def sjekk_artist_og_tittel(self, artist: str, tittel: str): 
-        artisttest = self.sjekk_tittel(artist)
+    def sjekk_artist_og_tittel(self, tittel: str, artist: str): 
         titteltest = self.sjekk_tittel(tittel)
+        artisttest = self.sjekk_artist(artist)
+
         if artisttest and titteltest: 
             return True
         else: 
@@ -39,3 +41,7 @@ class Sang():
         string = f"{self.tittel} med {self.artist}"
         return string
     
+test = Sang("boasy", "avelino mandem test")
+
+print(test.sjekk_artist_og_tittel("boasy", "mug"))
+print(test.sjekk_artist_og_tittel("boasy", "avelino"))

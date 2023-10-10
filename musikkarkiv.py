@@ -13,7 +13,8 @@ def hovedprogram():
         queen.legg_til_sang(i)
    
     mine_spillelister["queen"] = queen
-    mine_spillelister["queen"].skriv_til_fil()
+    mine_spillelister["queen"]
+
 
 
 
