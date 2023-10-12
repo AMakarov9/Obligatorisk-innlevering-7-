@@ -9,7 +9,11 @@ class Spilleliste:
         fil = open(f"{self._navn}.txt")
         for linje in fil: 
             data = linje.strip().split(";")
-            self._sanger.append(Sang(data[0], data[1]))
+            try: 
+                self._sanger.append(Sang(data[0], data[1]))
+            except: 
+                continue
+        
     
     def legg_til_sang(self, ny_sang: Sang): 
         self._sanger.append(ny_sang)
@@ -23,8 +27,8 @@ class Spilleliste:
     
     def finn_sang_tittel(self, tittel: str): 
         for i in self._sanger: 
-            if i.sjekk_tittel(): 
-                return True
+            if i.sjekk_tittel(tittel): 
+                return i
         return None
     
     def hent_artist_utvalg(self, artistnavn: str): 
@@ -36,9 +40,9 @@ class Spilleliste:
         return list
     
     def skriv_til_fil(self): 
-        fil = open(f"{self._navn}.txt", "x")
+        fil = open(f"{self._navn}.txt", "w")
         for i in self._sanger: 
-            fil.write(f"{i.__str__()}, ")
+            fil.write(f"\n{i.__str__()}")
         fil.close()
         
         

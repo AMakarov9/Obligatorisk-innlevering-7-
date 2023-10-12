@@ -1,7 +1,7 @@
 class Sang(): 
     def __init__(self, tittel: str, artist: str): 
-        self.tittel = tittel.lower()
-        self.artist = artist.lower()
+        self.tittel = tittel
+        self.artist = artist
 
     def spill(self): 
         print(f"Nå spilles {self.tittel} med {self.artist} ut til terminalen.")
@@ -19,12 +19,12 @@ class Sang():
             return False
         
     def sjekk_tittel(self, tittel: str): 
-        if tittel.lower() == self.tittel: 
+        if tittel.lower() == self.tittel.lower(): 
             return True
         else: 
             return False
     
-    def sjekk_artist_og_tittel(self, tittel: str, artist: str): 
+    def sjekk_artist_og_tittel(self, artist: str, tittel: str): 
         titteltest = self.sjekk_tittel(tittel)
         artisttest = self.sjekk_artist(artist)
 
@@ -38,10 +38,10 @@ class Sang():
         return string
     
     def __str__(self): 
-        string = f"{self.tittel} med {self.artist}"
+        string = f"{self.tittel};{self.artist}"
         return string
     
-test = Sang("boasy", "avelino mandem test")
+test = Sang("The Next Episode", "Dr. Dre and Snoop Dog")
 
-print(test.sjekk_artist_og_tittel("boasy", "mug"))
-print(test.sjekk_artist_og_tittel("boasy", "avelino"))
+#print(test.sjekk_artist_og_tittel("boasy", "mug"))
+#print(test.sjekk_artist_og_tittel("The Next Episode", "Snoop"))
