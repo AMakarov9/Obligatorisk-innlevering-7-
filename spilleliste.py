@@ -42,7 +42,7 @@ class Spilleliste:
     def skriv_til_fil(self): 
         fil = open(f"{self._navn}.txt", "w")
         for i in self._sanger: 
-            fil.write(f"\n{i.__str__()}")
+            fil.write(f"{i.streng_til_fil()}")
         fil.close()
         
         

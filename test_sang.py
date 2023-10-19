@@ -85,7 +85,7 @@ def _generer_tester(*args):
     return genererte_tester
 
 
-if __name__ == "__main__":
+def __legg_til_tester_i_TestSang():
     # Parametrene til testene
     spill_parametre = [
         ["Cryoshell", "Bye Bye Babylon"],
@@ -105,6 +105,7 @@ if __name__ == "__main__":
         ["The Next Episode", artist, tittel, True],
         ["tHe NeXt EpIsOdE", artist, tittel, True],
         ["Poker Face", artist, tittel, False],
+        ["The Carpet Crawlers", artist, tittel, False]
     ]
 
     sjekk_artist_og_tittel_parametre = [
@@ -130,4 +131,8 @@ if __name__ == "__main__":
     # Legger til testene i TestSang, slik at de er tilgjengelig når unittest.main kjører.
     for testfunksjon in genererte_tester:
         setattr(TestSang, testfunksjon.__name__, testfunksjon)
+
+
+__legg_til_tester_i_TestSang()
+if __name__ == "__main__":
     unittest.main()

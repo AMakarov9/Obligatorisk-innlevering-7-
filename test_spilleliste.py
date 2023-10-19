@@ -1,3 +1,4 @@
+
 import unittest
 import os
 import tempfile
@@ -17,8 +18,7 @@ class TestSpilleliste(unittest.TestCase):
     __fjern_sang = True
     __finn_sang_tittel = True
     __spill_alle = True
-    __finn_sang_tittel = True
-    __hent_artist_utvalg = True 
+    __hent_artist_utvalg = True
     __skriv_til_fil = True
 
     _standard_skip_melding = "Man har valgt å skippe testen"
@@ -116,6 +116,10 @@ class TestSpilleliste(unittest.TestCase):
         """Tester at .skriv_til_fil() oppretter, og skriver spillelisten til fil"""
         gammel_mappe = os.getcwd()
         gammel_musikk_fil = pathlib.Path(gammel_mappe, "musikk.txt")
+        with open(gammel_musikk_fil, "r") as gammel:
+            linjer = gammel.readlines()
+            self.assertEqual(linjer[-1][-1],  "\n", msg=f"musikk.txt slutter ikke med et linjeskift. Legg til et linjeskift i slutten av musikk.txt.")
+            
         self._spilleliste.les_fra_fil()
         ny_mappe = tempfile.mkdtemp()
         os.chdir(ny_mappe)
@@ -123,7 +127,7 @@ class TestSpilleliste(unittest.TestCase):
         ny_musikk_fil = pathlib.Path(ny_mappe, "musikk.txt")
         with open(ny_musikk_fil, "r") as ny:
             with open(gammel_musikk_fil, "r") as gammel:
-                nye_linjer = [linje for linje in ny]
+                nye_linjer = ny.readlines()
                 for linje in gammel:
                     self.assertIn(linje, nye_linjer, msg=f"Forventet linjen '{linje}' i den nye filen, men fant den ikke")
         os.chdir(gammel_mappe)
