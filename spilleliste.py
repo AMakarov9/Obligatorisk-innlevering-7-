@@ -9,12 +9,10 @@ class Spilleliste:
         fil = open(f"{self._navn}.txt")
         for linje in fil: 
             data = linje.strip().split(";")
-            try: 
+            if len(data):  
                 self._sanger.append(Sang(data[0], data[1]))
-            except: 
-                continue
         
-    
+
     def legg_til_sang(self, ny_sang: Sang): 
         self._sanger.append(ny_sang)
     
@@ -43,6 +41,4 @@ class Spilleliste:
         fil = open(f"{self._navn}.txt", "w")
         for i in self._sanger: 
             fil.write(f"{i.streng_til_fil()}")
-        fil.close()
-        
-        
+        fil.close()    

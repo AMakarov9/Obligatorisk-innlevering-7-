@@ -15,9 +15,13 @@ def hovedprogram():
   
     egen = Spilleliste("egen")
     egen.legg_til_sang(Sang("Boasy", "Avelino"))
-    egen.legg_til_sang(Sang("Test", "Dave"))
-    egen.legg_til_sang(Sang("Testtwo", "LS"))
+    egen.legg_til_sang(Sang("Question time", "Santan Dave"))
+    egen.legg_til_sang(Sang("Alakazam", "Tracey"))
 
     mine_spillelister["egen"] = egen
     mine_spillelister["egen"].spill_alle()
+    
+    for i in mine_spillelister.keys(): 
+        mine_spillelister[i].skriv_til_fil()
+
 hovedprogram()
